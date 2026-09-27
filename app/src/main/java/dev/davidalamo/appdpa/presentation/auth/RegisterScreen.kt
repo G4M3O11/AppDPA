@@ -1,5 +1,6 @@
 package dev.davidalamo.appdpa.presentation.auth
 
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -19,8 +20,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import dev.davidalamo.appdpa.data.remote.FirebaseAuthManager
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 @Composable
 fun RegisterScreen(navController: NavController){
@@ -28,6 +34,8 @@ fun RegisterScreen(navController: NavController){
     var phone by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -74,8 +82,17 @@ fun RegisterScreen(navController: NavController){
                     && email.isNotEmpty()
                     && password.isNotEmpty(),
             onClick = {
-                // Register Action to Database
-                navController.navigate("login")
+                CoroutineScope(Dispatchers.Main).launch {
+                    val result = FirebaseAuthManager
+                        .registerUser(name, email, password, phone)
+                    if (result.isSuccess){
+                        navController.navigate("login")
+                    }else{
+                        // Error Handler
+                        val exception = result.exceptionOrNull()
+                        Toast.makeText(context, exception?.message, Toast.LENGTH_LONG).show()
+                    }
+                }
             },
             modifier = Modifier.fillMaxWidth()
             ) {
