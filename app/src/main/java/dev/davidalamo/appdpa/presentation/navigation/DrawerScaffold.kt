@@ -43,7 +43,7 @@ fun DrawerScaffold(
                 Spacer(Modifier.height(12.dp))
                 Text("Menu principal", modifier = Modifier.padding(16.dp))
 
-                //Home Menu
+                // Home Menu
                 NavigationDrawerItem(
                     label = { Text("Home") },
                     selected = false,
@@ -52,7 +52,7 @@ fun DrawerScaffold(
                     }
                 )
 
-                //Permissions Menu
+                // Permissions Menu
                 NavigationDrawerItem(
                     label = { Text("Permissions") },
                     selected = false,
@@ -61,12 +61,21 @@ fun DrawerScaffold(
                     }
                 )
 
-                //Settings Menu
+                // Settings Menu
                 NavigationDrawerItem(
                     label = { Text("Favorites") },
                     selected = false,
                     onClick = {
                         navController.navigate("favorites")
+                    }
+                )
+
+                // Realtime Menu
+                NavigationDrawerItem(
+                    label = { Text("Realtime") },
+                    selected = false,
+                    onClick = {
+                        navController.navigate("realtime")
                     }
                 )
             }
