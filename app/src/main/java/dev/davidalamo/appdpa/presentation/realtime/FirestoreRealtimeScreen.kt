@@ -84,7 +84,20 @@ fun FirestoreRealtimeScreen(){
             value = mensajeUsuario,
             onValueChange = {mensajeUsuario = it},
             label = {Text("Mensaje:")},
+            placeholder = {Text("Mensaje")},
             modifier = Modifier.fillMaxWidth()
         )
+
+        Button(
+            onClick = {
+                firestoreInstance
+                    .set(mapOf("mensaje" to mensajeUsuario),
+                        SetOptions.merge())
+                    mensajeUsuario = ""
+            },
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("Actualizar mensaje")
+        }
     }
 }
