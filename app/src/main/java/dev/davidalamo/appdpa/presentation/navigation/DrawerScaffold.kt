@@ -78,6 +78,15 @@ fun DrawerScaffold(
                         navController.navigate("realtime")
                     }
                 )
+
+                // Supabase Menu
+                NavigationDrawerItem(
+                    label = { Text("Supabase Storage") },
+                    selected = false,
+                    onClick = {
+                        navController.navigate("supabase")
+                    }
+                )
             }
         }
     ) {

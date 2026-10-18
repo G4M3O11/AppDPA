@@ -9,6 +9,7 @@ import dev.davidalamo.appdpa.presentation.auth.RegisterScreen
 import dev.davidalamo.appdpa.presentation.home.HomeScreen
 import dev.davidalamo.appdpa.presentation.permissions.GalleryPermissionsScreen
 import dev.davidalamo.appdpa.presentation.realtime.FirestoreRealtimeScreen
+import dev.davidalamo.appdpa.presentation.supabase.SupabaseStorageScreen
 
 @Composable
 fun AppNavGraph(){
@@ -33,6 +34,11 @@ fun AppNavGraph(){
         composable("realtime") {
             DrawerScaffold(navController) {
                 FirestoreRealtimeScreen()
+            }
+        }
+        composable("supabase") {
+            DrawerScaffold(navController) {
+                SupabaseStorageScreen()
             }
         }
     }
