@@ -4,6 +4,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import dev.davidalamo.appdpa.data.remote.apifootball.ApiFootballService
+import dev.davidalamo.appdpa.presentation.apifootball.ApiFootballScreen
 import dev.davidalamo.appdpa.presentation.auth.LoginScreen
 import dev.davidalamo.appdpa.presentation.auth.RegisterScreen
 import dev.davidalamo.appdpa.presentation.home.HomeScreen
@@ -39,6 +41,11 @@ fun AppNavGraph(){
         composable("supabase") {
             DrawerScaffold(navController) {
                 SupabaseStorageScreen()
+            }
+        }
+        composable("apifootball") {
+            DrawerScaffold(navController) {
+                ApiFootballScreen()
             }
         }
     }

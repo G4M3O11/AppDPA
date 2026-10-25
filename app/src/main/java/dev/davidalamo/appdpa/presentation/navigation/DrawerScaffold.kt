@@ -87,6 +87,15 @@ fun DrawerScaffold(
                         navController.navigate("supabase")
                     }
                 )
+
+                // ApiFootball Menu
+                NavigationDrawerItem(
+                    label = { Text("API Football") },
+                    selected = false,
+                    onClick = {
+                        navController.navigate("apifootball")
+                    }
+                )
             }
         }
     ) {
